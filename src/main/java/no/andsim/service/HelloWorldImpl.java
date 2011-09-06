@@ -7,7 +7,7 @@ import javax.jws.WebService;
 public class HelloWorldImpl implements HelloWorld {
 
     public String sayHi(String text) {
-        return "Hello " + text;
+        return "Hello: " + text;
     }
 }
 

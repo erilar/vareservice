@@ -7,6 +7,7 @@ import javax.jws.WebService;
 public class HelloWorldImpl implements HelloWorld {
 
     public String sayHi(String text) {
+    	System.out.println("Saying hello to caller");
         return "Hello: " + text;
     }
 }

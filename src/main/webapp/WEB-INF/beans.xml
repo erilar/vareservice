@@ -16,4 +16,9 @@
 	  implementor="no.andsim.service.HelloWorldImpl" 
 	  address="/HelloWorld" />
 	  
+	 <!--   <jaxws:endpoint 
+	  id="vareService" 
+	  implementor="no.andsim.service.VareServiceImpl" 
+	  address="/VareService" />-->
+	  
 </beans>

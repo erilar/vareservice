@@ -11,13 +11,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.ProtectionDomain;
-
+import org.eclipse.jetty.server.handler.HandlerList;
 public class JettyServer {
 
     private final int port;
     private final String contextPath;
     private final String workPath;
-
 
     public static void main(String[] args) throws Exception {
     	JettyServer sc = new JettyServer();
@@ -65,11 +64,19 @@ public class JettyServer {
             String warFile = protectionDomain.getCodeSource().getLocation().toExternalForm();
             String currentDir = new File(protectionDomain.getCodeSource().getLocation().getPath()).getParent();
 
+            // Handle signout/signin in BigIP-cluster
 
             // Add the warFile (this jar)
             WebAppContext context = new WebAppContext(warFile, contextPath);
             context.setServer(srv);
             resetTempDirectory(context, currentDir);
+
+            // Add the handlers
+            HandlerList handlers = new HandlerList();
+            handlers.addHandler(context);
+           // handlers.addHandler(new ShutdownHandler(srv, context, secret));
+         //   handlers.addHandler(new BigIPNodeHandler(secret));
+            srv.setHandler(handlers);
 
             srv.start();
             srv.join();
@@ -82,7 +89,7 @@ public class JettyServer {
    
 
     private void usage() {
-        System.out.println("Usage: java -jar <file.jar> start\n\t" +
+        System.out.println("Usage is as follows: java -jar <file.jar> start\n\t" +
                 "start    Start the server (default)\n\t" 
         );
         System.exit(-1);

@@ -39,7 +39,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>vareservice-runnable</finalName>
+		<finalName>runnable-vareservice</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

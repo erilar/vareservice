@@ -1,1 +1,8 @@
 /target
+service/target
+service/.project
+service/.classpath
+container/target
+container/.project
+container/.classpath
+.settings
